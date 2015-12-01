@@ -1,0 +1,296 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    background-color:#f4f4f4;
+}
+
+.ajax__calendar_body  {
+    background-color:#f4f4f4;
+
+    
+}
+
+.ajax__calendar_container {
+    border: 1px solid #646464;
+    width: 100%;
+}
+
+h1#detalhes {
+    
+    display: inline;
+}
+
+div.usuarioOficial {
+    display: inline;
+}
+
+div.status {
+    background-color: #fff;
+    color: #efbd25;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #d6d3b6;
+    width: 100px;
+    text-align: center;
+    cursor: default;
+}
+
+div#resumo-detalhes {
+    background-color: #e2e2e2;
+    padding: 10px;
+}
+
+div img.imgDetalhes {
+    position: relative;
+    left: 20%;
+}
+
+.btn {
+    background-color: #efbd25;
+    color: #fff;
+    border-color:#e2b323;
+}
+
+.navbar-brand img {
+    width: 200px;
+}
+
+.navbar  {
+    background-color: #fff;
+    border: 0;
+}
+
+.navbar-collapse > .nav > li:hover,
+.nav > li > a:focus {
+
+  background-color: #efbd25;
+  cursor: pointer;
+}
+
+.nav-menu > .navbar-nav > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+img.logo-sobre {
+    width: 150px;
+}
+
+div#sobre {
+    
+    padding: 5px;
+    
+}
+
+div.sobre-reclama {
+    margin-top: 30px;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    background-color: #646464;
+    border-color: #e2e2e2;
+}
+
+a.btn.btn-primary.btn-lg.btn-principal {
+    position: relative;
+    margin-left: 20%;
+    display: block;
+    width: 60%
+}
+
+ul.nav.navbar-right > li > a,
+ul.nav.navbar-right > li > a:focus,
+ul.nav.navbar-right > li > a:hover {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #fff;
+    text-align: center;
+    background-color: #efbd25;
+}
+
+ul.navbar-nav.nav.navbar-right > li {
+    padding-right: 5px;
+    padding-left: 5px;
+
+}
+
+ul.navbar-nav.nav.navbar-right > li:hover {
+        padding-right: 5px;
+        padding-left: 5px;
+        background-color: #fff;
+}
+
+a.btn.btn-default.btn-sm.cadastro,
+li:hover > a.btn.btn-default.btn-sm.cadastro {
+    background-color: #d6d3b6;
+    border-color: #f4f4f4;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #efbd25;
+}
+
+li:hover > a.btn.btn-default.btn-sm {
+    background-color: #efbd25;
+}
+
+.navbar-toggle,
+.navbar-inverse .navbar-toggle:hover
+ {
+    background-color: #efbd25;
+    border: 0;
+}
+
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #eac25e;
+}
+
+
+
+ul.nav.navbar-right {
+    margin-top: 5%;
+}
+
+
+
+div.navbar-collapse.nav-menu {
+    background-color:#d6d3b6;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 0;
+    color: #756b54;
+    font-size: 20px;
+}
+
+p.reclam,
+h2.reclam {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 5px;
+    color: #fff;
+    font-size: 18px;
+    background-color:#d6d3b6;
+    display: block;
+
+    
+}
+
+h2.reclam {
+    display: inline;
+    clear: left;
+    margin-top: 0;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #646464;
+    border-color: #e2e2e2;
+}
+
+a {
+    color: #646464;
+}
+
+div.panel-gerencial {
+    padding: 10px;
+
+}
+
+.panel-default>.panel-heading {
+    background-color:#efbd25;
+    color: #fff;
+}
+
+input#Button2.btn.btn-primary {
+    display:block;
+    margin-top: 10px;
+    
+}
+
+
+
+p.p-inline {
+    display: inline;
+}
+
+hr {
+    margin-top: 0;
+    border-top: 1px solid #cecece;
+    margin-bottom: 10px;
+    clear: left;
+}
+
+
+
+span#MainContent_Label3,
+span#MainContent_Label1,
+span#MainContent_c,
+span#MainContent_Label2,
+span#MainContent_Label4,
+span#MainContent_Label5
+ {
+    color: #b77a00;
+    
+}
+
+.inputgroup {
+    margin: 5px;
+    
+}
+
+input#MainContent_FileUpload1 {
+    display: inline;
+}
+
+.form-control {
+    display: inline;
+    
+}
+
+.form-control:focus {
+    border-color: #efbd25;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #d6d3b6;
+}
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}
