@@ -95,6 +95,53 @@ namespace ReclamaPoa2015.Models
             return consulta;
         }
 
+        public List<ReclamacaoViewModel> populaPesquisa(int codCategoria, int codBairro, Status statusId, DateTime data1, DateTime data2)
+        {
+            PoaEntities db = new PoaEntities();
+            IQueryable<ReclamacaoViewModel> consulta = from l in db.Reclamacoes
+                                                       select new ReclamacaoViewModel
+                                                       {
+                                                           ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
+                                                           Categoria = l.Categoria.Cat_Titulo,
+                                                           BairrosId = l.BairroId,
+                                                           Bairro = l.Bairro.Nome,
+                                                           Endereco = l.Endereco,
+                                                           Descricao = l.Descricao,
+                                                           Foto = l.Foto,
+                                                           Status = l.StatusId,
+                                                           Titulo = l.Titulo,
+                                                           UserId = l.UserId,
+                                                           Data = l.Data,
+                                                           Link = true,
+                                                       };
+            if (codCategoria != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codCategoria);
+            }
+            if (codBairro != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codBairro);
+            }
+            if (statusId != 0)
+            {
+                consulta = consulta.Where(c => c.Status == statusId);
+            }
+            if (data1 != null)
+            {                
+                if (data2 != null && data2 != data1)
+                {
+                    consulta = consulta.Where(c => c.Data >= data1 && c.Data <= data2);
+                }
+                else
+                {
+                    data2 = data1.AddDays(1);
+                    consulta = consulta.Where(c => c.Data >= data1 && c.Data < data2);
+                }
+            }
+            return consulta.ToList();
+        }
+
         public IQueryable<ReclamacaoViewModel> getReclamacaoUserId(String _idUserId)
         {
             PoaEntities db = new PoaEntities();

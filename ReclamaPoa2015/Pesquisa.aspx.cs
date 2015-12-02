@@ -1,4 +1,5 @@
-﻿using ReclamaPoa2015.Models;
+﻿using Microsoft.AspNet.Identity;
+using ReclamaPoa2015.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,29 @@ namespace ReclamaPoa2015
 {
     public partial class Pesquisa : System.Web.UI.Page
     {
-        //CategoriaDal categoriaBll = new CategoriaDal();
-        //BairroDal bairroBll = new BairroDal();
+        CategoriaDal categoriaBll = new CategoriaDal();
+        BairroDal bairroBll = new BairroDal();
+        ReclamacaoDal r = new ReclamacaoDal();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Page.IsPostBack)
-            //{
-            //    PopulaCategorias();
-            //    PopulaBairros();
-            //    PopulaStatus();
-            //}
+            if (!Page.IsPostBack)
+            {
+                PopulaCategorias();
+                PopulaBairros();
+                PopulaStatus();
+                LimpaTela();             
+            }
         }
 
         private void PopulaBairros()
         {
-            //ddlBairro.DataSource = bairroBll.getBairros();
-            //ddlBairro.DataTextField = "Nome";
-            //ddlBairro.DataValueField = "BairroId";
-            //ddlBairro.DataBind();
-            //ddlBairro.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlBairro.SelectedIndex = 0;
+            ddlBairro.DataSource = bairroBll.getBairros();
+            ddlBairro.DataTextField = "Nome";
+            ddlBairro.DataValueField = "BairroId";
+            ddlBairro.DataBind();
+            ddlBairro.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlBairro.SelectedIndex = 0;
         }
 
         private void PopulaStatus()
@@ -46,17 +49,40 @@ namespace ReclamaPoa2015
 
         private void PopulaCategorias()
         {
-            //ddlCategoria.DataSource = categoriaBll.getCategoria();
-            //ddlCategoria.DataTextField = "Cat_Titulo";
-            //ddlCategoria.DataValueField = "CategoriaId";
-            //ddlCategoria.DataBind();
-            //ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoria.SelectedIndex = 0;
+            ddlCategoria.DataSource = categoriaBll.getCategoria();
+            ddlCategoria.DataTextField = "Cat_Titulo";
+            ddlCategoria.DataValueField = "CategoriaId";
+            ddlCategoria.DataBind();
+            ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoria.SelectedIndex = 0;
         }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            int codCategoria = int.Parse(ddlCategoria.SelectedValue);
+            int codBairro = int.Parse(ddlBairro.SelectedValue);;
+            Status statusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
+            DateTime dataValue1;
+            DateTime dataValue2;
+            String data1 = txtDate1.Text;
+            if (DateTime.TryParse(data1, out dataValue1))
+            {
+                String data2 = txtDate2.Text;
+                if (DateTime.TryParse(data2, out dataValue2))
+                {
+                    PopulaList(codCategoria, codBairro, statusId, dataValue1, dataValue2);
+                }
+                else
+                {
+                    PopulaList(codCategoria, codBairro, statusId, dataValue1, dataValue1);
+                }
+            }
+        }
 
+        private void PopulaList(int codCategoria, int codBairro, Status statusId, DateTime data1, DateTime data2)
+        {    
+            reclamacaoList.DataSource = r.populaPesquisa(codCategoria, codBairro, statusId, data1, data2);
+            reclamacaoList.DataBind();
         }
 
         protected void btnlimpar_Click(object sender, EventArgs e)
@@ -71,6 +97,23 @@ namespace ReclamaPoa2015
             ddlStatus.SelectedIndex = 0;
             txtDate1.Text = String.Empty;
             txtDate2.Text = String.Empty;
+            reclamacaoList.DataSource = null;
+            reclamacaoList.DataBind();
+        }
+
+        public IQueryable<ReclamacaoViewModel> reclamacao_pesquisa()
+        {
+            ReclamacaoDal r = new ReclamacaoDal();
+            IQueryable<ReclamacaoViewModel> rec = r.getReclamacoes();
+            if (User.Identity.IsAuthenticated)
+            {
+                String idUser = Request.QueryString["idUser"];
+                int id;
+                Int32.TryParse(idUser, out id);
+                if (id == 1)
+                    rec = r.getReclamacaoUserId(User.Identity.GetUserId());
+            }
+            return rec;
         }
     }
 }

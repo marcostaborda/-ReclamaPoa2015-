@@ -108,7 +108,7 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <li><a runat="server" href="~/">Página Inicial</a></li>
-                            <%--<li><a runat="server" href="~/Categorias">Categorias</a></li>--%>
+                            <li><a href="Pesquisa.aspx">Pesquisa</a></li>
                             <li><a runat="server" href="~/Reclamacoes">Reclamações</a></li>
                             <li><a runat="server" href="Sobre.aspx">Sobre</a></li>
                         </AnonymousTemplate>
@@ -136,7 +136,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href="Reclamacoes">Reclamações</a></li>
                                             <li><a href="Pesquisa">Pesquisa</a></li>
-                                            <li><a href="Reclamacoes.aspx">Minhas Reclamações</a></li>
+                                            <li><a href="Reclamacoes.aspx?idUser=1">Minhas Reclamações</a></li>
                                             <li><a href="Novareclamacao">Criar Reclamação</a></li>
                                         </ul>
                                     </li>

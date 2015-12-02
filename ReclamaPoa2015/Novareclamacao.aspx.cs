@@ -98,7 +98,6 @@ namespace ReclamaPoa2015
 
         protected void cmdInserir_Click(object sender, EventArgs e)
         {
-
             if (ViewState["idRec"] != null)
             {
                 Alterar(ViewState["idRec"]);
@@ -123,7 +122,7 @@ namespace ReclamaPoa2015
             }
             else
             {
-                ((SiteMaster)this.Master).ShowMessage("AAlterado com sucesso", MessageType.Sucesso);
+                ((SiteMaster)this.Master).ShowMessage("Alterado com sucesso", MessageType.Sucesso);
             }
         }
 

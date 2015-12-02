@@ -112,13 +112,13 @@ namespace ReclamaPoa2015 {
         protected global::System.Web.UI.WebControls.TextBox txtDate2;
         
         /// <summary>
-        /// btnEnviar control.
+        /// btnPesquisar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnviar;
+        protected global::System.Web.UI.WebControls.Button btnPesquisar;
         
         /// <summary>
         /// btnlimpar control.
@@ -128,5 +128,14 @@ namespace ReclamaPoa2015 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnlimpar;
+        
+        /// <summary>
+        /// reclamacaoList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView reclamacaoList;
     }
 }

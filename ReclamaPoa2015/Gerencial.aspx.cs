@@ -13,22 +13,18 @@ namespace ReclamaPoa2015
         CategoriaDal categoriaDal = new CategoriaDal();
         BairroDal bairroDal = new BairroDal();
 
-        public enum MessageType { Sucesso, Erro, Info, Perigo };
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("Account/Login.aspx");
+            }
             if (!IsPostBack)
             {
                 PopulaCategorias();
                 PopulaBairros();
                 PopulaStatus();
             }
-        }
-
-        protected void ShowMessage(string Message, MessageType type)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
         private void PopulaStatus()
@@ -67,6 +63,7 @@ namespace ReclamaPoa2015
             ddlBairro3.SelectedIndex = 0;
 
         }
+
         private void PopulaCategorias()
         {
             List<CategoriaDal> cat = categoriaDal.getCategoria();
@@ -100,7 +97,6 @@ namespace ReclamaPoa2015
             ddlCategoria3.SelectedIndex = 0;
         }
 
-
         protected void btnInserirCategoria_Click(object sender, EventArgs e)
         {
             if (IsValid)
@@ -110,9 +106,9 @@ namespace ReclamaPoa2015
                 novaCat.Cat_Descricao = txtDescricao.Text;
                 int i = categoriaDal.insereCategoria(novaCat);
                 if (i > 0)
-                    ShowMessage("Você Inseriu com sucesso a Categoria", MessageType.Sucesso);
+                    ((SiteMaster)this.Master).ShowMessage("Você Inseriu com sucesso a Categoria", MessageType.Sucesso);
                 else
-                    ShowMessage("Ocorreu um erro, contate o administrador", MessageType.Erro);
+                    ((SiteMaster)this.Master).ShowMessage("Ocorreu um erro, contate o administrador", MessageType.Erro);
                 LimpaCategoria();
                 PopulaCategorias();
             }

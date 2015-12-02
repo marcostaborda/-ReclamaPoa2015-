@@ -16,6 +16,7 @@ namespace ReclamaPoa2015.Models
         public String Foto { get; set; }
         public String UserName { get; set; }
         public Boolean Link { get; set;}
+        public DateTime Data { get; set; }
         public Status Status
         {
             get; set;

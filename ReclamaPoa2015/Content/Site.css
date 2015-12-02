@@ -2,13 +2,17 @@
 body {
     padding-top: 120px;
     padding-bottom: 20px;
-    background-color:#f4f4f4;
+    background-color: #f4f4f4;
 }
 
-.ajax__calendar_body  {
-    background-color:#f4f4f4;
+.imagemGrid {
+    max-width: 140px;
+    max-height: 100px;
+}
 
-    
+
+.ajax__calendar_body {
+    background-color: #f4f4f4;
 }
 
 .ajax__calendar_container {
@@ -17,7 +21,6 @@ body {
 }
 
 h1#detalhes {
-    
     display: inline;
 }
 
@@ -48,23 +51,22 @@ div img.imgDetalhes {
 .btn {
     background-color: #efbd25;
     color: #fff;
-    border-color:#e2b323;
+    border-color: #e2b323;
 }
 
 .navbar-brand img {
     width: 200px;
 }
 
-.navbar  {
+.navbar {
     background-color: #fff;
     border: 0;
 }
 
 .navbar-collapse > .nav > li:hover,
 .nav > li > a:focus {
-
-  background-color: #efbd25;
-  cursor: pointer;
+    background-color: #efbd25;
+    cursor: pointer;
 }
 
 .nav-menu > .navbar-nav > li > a {
@@ -77,9 +79,7 @@ img.logo-sobre {
 }
 
 div#sobre {
-    
     padding: 5px;
-    
 }
 
 div.sobre-reclama {
@@ -95,7 +95,7 @@ a.btn.btn-primary.btn-lg.btn-principal {
     position: relative;
     margin-left: 20%;
     display: block;
-    width: 60%
+    width: 60%;
 }
 
 ul.nav.navbar-right > li > a,
@@ -111,14 +111,13 @@ ul.nav.navbar-right > li > a:hover {
 ul.navbar-nav.nav.navbar-right > li {
     padding-right: 5px;
     padding-left: 5px;
-
 }
 
-ul.navbar-nav.nav.navbar-right > li:hover {
+    ul.navbar-nav.nav.navbar-right > li:hover {
         padding-right: 5px;
         padding-left: 5px;
         background-color: #fff;
-}
+    }
 
 a.btn.btn-default.btn-sm.cadastro,
 li:hover > a.btn.btn-default.btn-sm.cadastro {
@@ -135,8 +134,7 @@ li:hover > a.btn.btn-default.btn-sm {
 }
 
 .navbar-toggle,
-.navbar-inverse .navbar-toggle:hover
- {
+.navbar-inverse .navbar-toggle:hover {
     background-color: #efbd25;
     border: 0;
 }
@@ -154,7 +152,7 @@ ul.nav.navbar-right {
 
 
 div.navbar-collapse.nav-menu {
-    background-color:#d6d3b6;
+    background-color: #d6d3b6;
     width: 100%;
 }
 
@@ -171,10 +169,8 @@ h2.reclam {
     padding: 5px;
     color: #fff;
     font-size: 18px;
-    background-color:#d6d3b6;
+    background-color: #d6d3b6;
     display: block;
-
-    
 }
 
 h2.reclam {
@@ -195,18 +191,16 @@ a {
 
 div.panel-gerencial {
     padding: 10px;
-
 }
 
-.panel-default>.panel-heading {
-    background-color:#efbd25;
+.panel-default > .panel-heading {
+    background-color: #efbd25;
     color: #fff;
 }
 
 input#Button2.btn.btn-primary {
-    display:block;
+    display: block;
     margin-top: 10px;
-    
 }
 
 
@@ -229,15 +223,12 @@ span#MainContent_Label1,
 span#MainContent_c,
 span#MainContent_Label2,
 span#MainContent_Label4,
-span#MainContent_Label5
- {
+span#MainContent_Label5 {
     color: #b77a00;
-    
 }
 
 .inputgroup {
     margin: 5px;
-    
 }
 
 input#MainContent_FileUpload1 {
@@ -246,12 +237,11 @@ input#MainContent_FileUpload1 {
 
 .form-control {
     display: inline;
-    
 }
 
-.form-control:focus {
-    border-color: #efbd25;
-}
+    .form-control:focus {
+        border-color: #efbd25;
+    }
 
 footer {
     margin-top: 50px;
@@ -290,6 +280,7 @@ input[type="select"] {
     .jumbotron {
         margin-top: 20px;
     }
+
     .body-content {
         padding: 0;
     }

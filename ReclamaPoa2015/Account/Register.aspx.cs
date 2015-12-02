@@ -23,7 +23,7 @@ namespace ReclamaPoa2015.Account
                 //string code = manager.GenerateEmailConfirmationToken(user.Id);
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
+                manager.AddToRoles(user.Id, "Usuario");
                 signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
