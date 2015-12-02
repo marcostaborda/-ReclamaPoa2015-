@@ -16,13 +16,13 @@ namespace ReclamaPoa2015.Models
         {
             PoaEntities _db = new PoaEntities();
             var categorias = from l in _db.Categorias
-                          orderby l.Cat_Titulo
-                          select new CategoriaDal
-                          {
-                              CategoriaId = l.CategoriaId,
-                              Cat_Titulo = l.Cat_Titulo,
-                              Cat_Descricao = l.Cat_Descricao
-                          };
+                             orderby l.Cat_Titulo
+                             select new CategoriaDal
+                             {
+                                 CategoriaId = l.CategoriaId,
+                                 Cat_Titulo = l.Cat_Titulo,
+                                 Cat_Descricao = l.Cat_Descricao
+                             };
             return categorias.ToList();
         }
 
@@ -45,7 +45,46 @@ namespace ReclamaPoa2015.Models
                 return 0;
             }
         }
+
+
+        public int alteraCategoria(CategoriaDal novaCat)
+        {
+            PoaEntities _db = new PoaEntities();
+            Categoria nova = new Categoria
+            {
+                Cat_Titulo = novaCat.Cat_Titulo,
+                Cat_Descricao = novaCat.Cat_Descricao
+            };
+            try
+            {
+                _db.SaveChanges();
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+
+        public int removeCategoria(int idCategoria)
+        {
+            PoaEntities _db = new PoaEntities();
+            var categorias = (from l in _db.Categorias
+                              where l.CategoriaId == idCategoria
+                              select l).Single();
+            try
+            {
+                _db.Categorias.Remove(categorias);
+                _db.SaveChanges();
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
     }
 
-    
+
 }

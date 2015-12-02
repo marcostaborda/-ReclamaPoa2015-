@@ -28,6 +28,7 @@ namespace ReclamaPoa2015
                 PopulaCategorias();
                 PopulaBairros();
                 PopulaStatus();
+                
                 MostraStatus(false);
                 if (idRec != null)
                 {
