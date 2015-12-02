@@ -33,7 +33,10 @@
                         <td><%#: Item.Titulo%></td>
                         <td><%#: Item.Descricao%></td>
                         <td style="max-width: 140px; max-height: 100px">
-                            <img src="Images/Reclamacao/<%#: Item.Foto%>" style="width: 100%" /></td>
+                            <img src="Images/Reclamacao/<%#: Item.Foto %>" style="width: 100%" /></td>
+                        <td  runat="server" Visible="<%# Item.Link %>" >
+                           <a href="Novareclamacao.aspx?idReclamacao=<%#:Item.ReclamacaoId%>">Alterar</a>
+                        </td>
                         <td>
                             <a href="Detalhes.aspx?idReclamacao=<%#:Item.ReclamacaoId%>">Detalhes</a>
                         </td>

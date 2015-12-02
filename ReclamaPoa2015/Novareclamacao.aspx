@@ -58,7 +58,7 @@
                 <asp:DropDownList CssClass="form-control" ID="ddlStatus" runat="server"  Width="250px"></asp:DropDownList>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" runat="server" id="foto">
             <asp:Label ID="Label5" runat="server" Text="Carregar foto: "></asp:Label>
             <asp:FileUpload CssClass="form-control" ID="FileUpload1" runat="server" />
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.JPEG)$"

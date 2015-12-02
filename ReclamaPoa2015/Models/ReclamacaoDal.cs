@@ -45,22 +45,52 @@ namespace ReclamaPoa2015.Models
             }
         }
 
-        public IQueryable<ReclamacaoViewModel> getReclamacaoId(int _idReclamacao)
+        public int altaraReclamacao(ReclamacaoDal r)
+        {
+            PoaEntities db = new PoaEntities();
+            Reclamacao nova = new Reclamacao();
+
+            var getReclama = (from reclama in db.Reclamacoes
+                           where reclama.ReclamacaoId == r.ReclamacaoId
+                           select reclama).Single();
+
+            getReclama.StatusId = r.StatusId;           
+            try
+            {              
+                db.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                string a = e.ToString();
+                return 0;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para pegar a reclamacao e listar detalhes
+        /// </summary>
+        /// <param name="idReclamacao">Id Reclamação</param>
+        /// <returns></returns>
+        public IQueryable<ReclamacaoViewModel> getReclamacaoId(int idReclamacao)
         {           
             PoaEntities db = new PoaEntities();
             IQueryable<ReclamacaoViewModel> consulta = from l in db.Reclamacoes
-                                                       where l.ReclamacaoId == _idReclamacao
+                                                       where l.ReclamacaoId == idReclamacao
                                                        select new ReclamacaoViewModel
                                                        {
                                                            ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
                                                            Categoria = l.Categoria.Cat_Titulo,
+                                                           BairrosId = l.BairroId,                                                           
                                                            Bairro = l.Bairro.Nome,
                                                            Endereco = l.Endereco,
                                                            Descricao = l.Descricao,
                                                            Foto = l.Foto,
                                                            Status = l.StatusId,
                                                            Titulo = l.Titulo,
-                                                           UserId = l.UserId
+                                                           UserId = l.UserId,
                                                        };
             return consulta;
         }
@@ -73,14 +103,17 @@ namespace ReclamaPoa2015.Models
                                                        select new ReclamacaoViewModel
                                                        {
                                                            ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
                                                            Categoria = l.Categoria.Cat_Titulo,
+                                                           BairrosId = l.BairroId,
                                                            Bairro = l.Bairro.Nome,
                                                            Endereco = l.Endereco,
                                                            Descricao = l.Descricao,
                                                            Foto = l.Foto,
                                                            Status = l.StatusId,
                                                            Titulo = l.Titulo,
-                                                           UserId = l.UserId
+                                                           UserId = l.UserId,
+                                                           Link = true,                                                          
                                                        };
             return consulta;
         }
@@ -94,13 +127,16 @@ namespace ReclamaPoa2015.Models
                                                        select new ReclamacaoViewModel
                                                        {
                                                            ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
+                                                           BairrosId = l.BairroId,
                                                            Categoria = l.Categoria.Cat_Titulo,
                                                            Bairro = l.Bairro.Nome,
                                                            Endereco = l.Endereco,
                                                            Descricao = l.Descricao,
                                                            Foto = l.Foto,
                                                            Status = l.StatusId,
-                                                           Titulo = l.Titulo
+                                                           Titulo = l.Titulo,
+                                                           Link = false
                                                        };
             return consulta;
         }

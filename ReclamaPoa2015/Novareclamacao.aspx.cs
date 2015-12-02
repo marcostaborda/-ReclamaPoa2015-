@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using ReclamaPoa2015.Models;
 using ReclamaPoa2015.Models;
 using System;
 using System.Collections.Generic;
@@ -15,8 +13,7 @@ namespace ReclamaPoa2015
     {
         BairroDal b = new BairroDal();
         CategoriaDal c = new CategoriaDal();
-
-        public enum MessageType { Sucesso, Erro, Info, Perigo };
+        ReclamacaoDal r = new ReclamacaoDal();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,14 +23,43 @@ namespace ReclamaPoa2015
             }
             if (!Page.IsPostBack)
             {
+                String idRec = Request.QueryString["idReclamacao"];
+                ViewState["idRec"] = idRec;
                 PopulaCategorias();
                 PopulaBairros();
                 PopulaStatus();
-                EscondeCampos(true);
+                MostraStatus(false);
+                if (idRec != null)
+                {
+                    PopulaTela(idRec);
+                }
             }
         }
 
-        private void EscondeCampos(bool talvez)
+        private void PopulaTela(string _idRec)
+        {
+            int _id;
+            Int32.TryParse(_idRec, out _id);            
+            ReclamacaoViewModel c = r.getReclamacaoId(_id).FirstOrDefault();
+            ddlCategoria.SelectedValue = c.CategoriaId.ToString();
+            ddlBairro.SelectedValue = c.BairrosId.ToString();
+            ddlStatus.SelectedValue = c.Status.ToString();
+            txtTitulo.Text = c.Titulo;
+            txtEndereco.Text = c.Endereco;
+            txtDescricao.Text = c.Descricao;
+            ddlCategoria.Enabled = false;
+            ddlBairro.Enabled = false;
+            txtTitulo.Enabled = false;
+            txtEndereco.Enabled = false;
+            txtDescricao.Enabled = false;
+            btnLimpar.Visible = false;
+            foto.Visible = false;
+            Button1.Text = "Salvar";
+            ddlStatus.Items.Remove(ddlStatus.Items.FindByText("Encerrada"));
+            MostraStatus(true);
+        }
+
+        private void MostraStatus(bool talvez)
         {
             Label6.Visible = talvez; ddlStatus.Visible = talvez;
         }
@@ -42,17 +68,11 @@ namespace ReclamaPoa2015
         {
             Array c = Enum.GetValues(typeof(Status));
 
-            
             foreach (var item in c)
             {
                 ddlStatus.Items.Add(new ListItem(Enum.GetName(typeof(Status), item), item.ToString()));
             }
             ddlStatus.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-        }
-
-        protected void ShowMessage(string Message, MessageType type)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
         private void PopulaBairros()
@@ -76,6 +96,37 @@ namespace ReclamaPoa2015
         }
 
         protected void cmdInserir_Click(object sender, EventArgs e)
+        {
+
+            if (ViewState["idRec"] != null)
+            {
+                Alterar(ViewState["idRec"]);
+            }
+            else
+            {
+                Inserir();
+            }
+        }
+
+        private void Alterar(object v)
+        {
+            int idReclamacao = Int32.Parse(v.ToString());
+            ReclamacaoDal alterar = new ReclamacaoDal();
+
+            alterar.ReclamacaoId = idReclamacao;
+            alterar.StatusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
+            int retorno = alterar.altaraReclamacao(alterar);
+            if (retorno == 0)
+            {
+                ((SiteMaster)this.Master).ShowMessage("Ocorreu um erro ao Alterar!", MessageType.Erro);
+            }
+            else
+            {
+                ((SiteMaster)this.Master).ShowMessage("AAlterado com sucesso", MessageType.Sucesso);
+            }
+        }
+
+        private void Inserir()
         {
             if (Page.IsValid)
             {
@@ -105,28 +156,28 @@ namespace ReclamaPoa2015
 
                             if (retorno == 0)
                             {
-                                ShowMessage("Ocorreu um erro ao inserir!", MessageType.Erro);
+                                ((SiteMaster)this.Master).ShowMessage("Ocorreu um erro ao inserir!", MessageType.Erro);
                             }
                             else
                             {
                                 //Response.Redirect("Reclamacoes.aspx");
                                 LimparCampos();
-                                ShowMessage("Cadastrado com sucesso", MessageType.Sucesso);
+                                ((SiteMaster)this.Master).ShowMessage("Cadastrado com sucesso", MessageType.Sucesso);
                             }
                         }
                         else
                         {
-                            ShowMessage("Selecione uma Foto!", MessageType.Erro);
+                            ((SiteMaster)this.Master).ShowMessage("Selecione uma Foto!", MessageType.Erro);
                         }
                     }
                     else
                     {
-                        ShowMessage("Selecione um bairro!", MessageType.Erro);
+                        ((SiteMaster)this.Master).ShowMessage("Selecione um bairro!", MessageType.Erro);
                     }
                 }
                 else
                 {
-                    ShowMessage("Selecione uma Categoria!", MessageType.Erro);
+                    ((SiteMaster)this.Master).ShowMessage("Selecione uma Categoria!", MessageType.Erro);
                 }
             }
         }

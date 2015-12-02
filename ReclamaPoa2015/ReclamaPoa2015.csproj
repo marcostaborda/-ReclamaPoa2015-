@@ -459,6 +459,7 @@
     <Compile Include="Models\CategoriaDal.cs" />
     <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\PoaEntities.cs" />
     <Compile Include="Models\Reclamacao.cs" />
     <Compile Include="Models\ReclamacaoDal.cs" />

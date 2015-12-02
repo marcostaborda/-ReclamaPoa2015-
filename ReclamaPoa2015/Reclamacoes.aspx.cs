@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using ReclamaPoa2015.Models;
-using ReclamaPoa2015.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace ReclamaPoa2015
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
         // The return type can be changed to IEnumerable, however to support
         // paging and sorting, the following parameters must be added:
@@ -31,13 +30,12 @@ namespace ReclamaPoa2015
             if (User.Identity.IsAuthenticated)
             {
                 String idUser = Request.QueryString["idUser"];
-
                 int id;
                 Int32.TryParse(idUser, out id);
                 if (id == 1)
                     rec = r.getReclamacaoUserId(User.Identity.GetUserId());
             }
             return rec;
-        }
+        }        
     }
 }

@@ -32,9 +32,6 @@ namespace ReclamaPoa2015
 
         private void PopulaReclamacao(int _idReclamcao)
         {
-           
-
-
             ReclamacaoDal r = new ReclamacaoDal();
             ReclamacaoViewModel c = r.getReclamacaoId(_idReclamcao).FirstOrDefault();
             var currentUserId = c.UserId;

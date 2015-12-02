@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using ReclamaPoa2015.Models;
 
 namespace ReclamaPoa2015
 {
@@ -15,6 +16,7 @@ namespace ReclamaPoa2015
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -68,15 +70,14 @@ namespace ReclamaPoa2015
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {                       
             RegistrarScrpitDatePicker();
-
         }
 
         private void RegistrarScrpitDatePicker()
         {
             String scriptText =
-               "$('.sandbox-container .input-daterange').datepicker({format: 'dd/mm/yyyy',language:'pt-BR',todayBtn: 'linked', autoclose: true});";
+               "if ($('.sandbox-container').length > 0) {$('.sandbox-container .input-daterange').datepicker({ format: 'dd/mm/yyyy',language: 'pt-BR',todayBtn: 'linked', autoclose: true});}";
 
             ScriptManager.RegisterStartupScript(this.Page, GetType(), "datepicker", scriptText, true);
         }
@@ -84,6 +85,11 @@ namespace ReclamaPoa2015
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut();
+        }
+
+        public void ShowMessage(string Message, MessageType type)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, GetType(), "", "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
         //protected void LogIn(object sender, EventArgs e)
