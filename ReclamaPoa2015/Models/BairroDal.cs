@@ -20,8 +20,7 @@ namespace ReclamaPoa2015.Models
                               BairroId = l.BairroId,
                               Nome = l.Nome
                           };
-
-            return bairros.ToList(); 
+            return bairros.ToList();
         }
     }
 }

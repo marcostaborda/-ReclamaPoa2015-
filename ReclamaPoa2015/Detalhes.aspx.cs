@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using ReclamaPoa2015.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,21 +25,30 @@ namespace ReclamaPoa2015
                     Int32.TryParse(idReclamcao, out id);
                     PopulaReclamacao(id);
                 }
-                //else
-                //    Response.Redirect("Default.aspx");
+                else
+                    Response.Redirect("Reclamacoes");
             }
         }
 
         private void PopulaReclamacao(int _idReclamcao)
         {
-            //ReclamacaoViewModel c = reclamacaoDal.getReclamacaoId(_idReclamcao).FirstOrDefault();
-            //litCategoria.Text = c.Categoria;
-            //litBairro.Text = c.Bairro;
-            //litDescricao.Text = c.Descricao;
-            //litEndereco.Text = c.Endereco;
-            //litTituloReclamacao.Text = c.Titulo;
-            //litStatus.Text = Enum.GetName(typeof(Status), c.Status);
-            //imgReclamacao.ImageUrl = @"~/Images/Reclamacao/" + c.Foto;
+           
+
+
+            ReclamacaoDal r = new ReclamacaoDal();
+            ReclamacaoViewModel c = r.getReclamacaoId(_idReclamcao).FirstOrDefault();
+            var currentUserId = c.UserId;
+
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var currentUser = manager.FindById(currentUserId);
+            litUsuario.Text = currentUser.UserName;
+            litCategoria.Text = c.Categoria;
+            litBairro.Text = c.Bairro;
+            litDescricao.Text = c.Descricao;
+            litEndereco.Text = c.Endereco;
+            litTituloReclamacao.Text = c.Titulo;
+            litStatus.Text = Enum.GetName(typeof(Status), c.Status);
+            imgReclamacao.ImageUrl = @"~/Images/Reclamacao/" + c.Foto;
         }
     }
 }

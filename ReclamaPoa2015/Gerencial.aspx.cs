@@ -17,6 +17,7 @@ namespace ReclamaPoa2015
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 PopulaCategorias();
@@ -68,53 +69,53 @@ namespace ReclamaPoa2015
         }
         private void PopulaCategorias()
         {
-            //List<CategoriaDal> cat = categoriaDal.getCategoria();
+            List<CategoriaDal> cat = categoriaDal.getCategoria();
 
-            //ddlCategorias.DataSource = cat;
-            //ddlCategorias.DataTextField = "Cat_Titulo";
-            //ddlCategorias.DataValueField = "CategoriaId";
-            //ddlCategorias.DataBind();
-            //ddlCategorias.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoria.SelectedIndex = 0;
+            ddlCategorias.DataSource = cat;
+            ddlCategorias.DataTextField = "Cat_Titulo";
+            ddlCategorias.DataValueField = "CategoriaId";
+            ddlCategorias.DataBind();
+            ddlCategorias.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoria.SelectedIndex = 0;
 
-            //ddlCategoria.DataSource = cat;
-            //ddlCategoria.DataTextField = "Cat_Titulo";
-            //ddlCategoria.DataValueField = "CategoriaId";
-            //ddlCategoria.DataBind();
-            //ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoria.SelectedIndex = 0;
+            ddlCategoria.DataSource = cat;
+            ddlCategoria.DataTextField = "Cat_Titulo";
+            ddlCategoria.DataValueField = "CategoriaId";
+            ddlCategoria.DataBind();
+            ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoria.SelectedIndex = 0;
 
-            //ddlCategoriaComent.DataSource = cat;
-            //ddlCategoriaComent.DataTextField = "Cat_Titulo";
-            //ddlCategoriaComent.DataValueField = "CategoriaId";
-            //ddlCategoriaComent.DataBind();
-            //ddlCategoriaComent.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoriaComent.SelectedIndex = 0;
+            ddlCategoriaComent.DataSource = cat;
+            ddlCategoriaComent.DataTextField = "Cat_Titulo";
+            ddlCategoriaComent.DataValueField = "CategoriaId";
+            ddlCategoriaComent.DataBind();
+            ddlCategoriaComent.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoriaComent.SelectedIndex = 0;
 
-            //ddlCategoria3.DataSource = cat;
-            //ddlCategoria3.DataTextField = "Cat_Titulo";
-            //ddlCategoria3.DataValueField = "CategoriaId";
-            //ddlCategoria3.DataBind();
-            //ddlCategoria3.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoria3.SelectedIndex = 0;
+            ddlCategoria3.DataSource = cat;
+            ddlCategoria3.DataTextField = "Cat_Titulo";
+            ddlCategoria3.DataValueField = "CategoriaId";
+            ddlCategoria3.DataBind();
+            ddlCategoria3.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoria3.SelectedIndex = 0;
         }
 
 
         protected void btnInserirCategoria_Click(object sender, EventArgs e)
         {
-            //if (IsValid)
-            //{
-            //    CategoriaDal novaCat = new CategoriaDal();
-            //    novaCat.Cat_Titulo = txtNome.Text;
-            //    novaCat.Cat_Descricao = txtDescricao.Text;
-            //    int i = categoriaDal.insereCategoria(novaCat);
-            //    if (i > 0)
-            //        ShowMessage("Você Inseriu com sucesso a Categoria", MessageType.Sucesso);
-            //    else
-            //        ShowMessage("Ocorreu um erro contate o administrador", MessageType.Erro);
-            //    LimpaCategoria();
-            //    PopulaCategorias();
-            //}
+            if (IsValid)
+            {
+                CategoriaDal novaCat = new CategoriaDal();
+                novaCat.Cat_Titulo = txtNome.Text;
+                novaCat.Cat_Descricao = txtDescricao.Text;
+                int i = categoriaDal.insereCategoria(novaCat);
+                if (i > 0)
+                    ShowMessage("Você Inseriu com sucesso a Categoria", MessageType.Sucesso);
+                else
+                    ShowMessage("Ocorreu um erro, contate o administrador", MessageType.Erro);
+                LimpaCategoria();
+                PopulaCategorias();
+            }
         }
 
         private void LimpaCategoria()

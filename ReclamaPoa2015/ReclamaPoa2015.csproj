@@ -461,6 +461,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PoaEntities.cs" />
     <Compile Include="Models\Reclamacao.cs" />
+    <Compile Include="Models\ReclamacaoDal.cs" />
     <Compile Include="Models\ReclamacaoViewModel.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Models\Status.cs" />

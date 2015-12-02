@@ -10,7 +10,7 @@
 
             <hr>
             <div class="well">
-                Bem-vindo, <%: Context.User.Identity.GetUserName() %>
+                Bem-vindo, <%: Context.User.Identity.GetUserName()  %>
                 <p>Acesse aqui informações e gere relatórios sobre o site.</p>
             </div>
 
@@ -19,7 +19,7 @@
                     <!--/panel-->
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#orgaos"><i class="glyphicon glyphicon-eye-open"></i>Orgãos oficiais</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#orgaos"><i class="glyphicon glyphicon-eye-open"></i> Orgãos oficiais</div>
                         <div class="panel-gerencial collapse" id="orgaos">
                             <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                                 <ContentTemplate>
@@ -38,12 +38,12 @@
                     <!--/panel-->
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#usuarios"><i class="glyphicon glyphicon-user"></i>Usuários</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#usuarios"><i class="glyphicon glyphicon-user"></i> Usuários</div>
                         <div class="panel-body collapse" id="usuarios">
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
                                     <p>
-                                        <p>Insira o nome do usuário: </p>
+                                        <p>Insira o e-mail do usuário: </p>
                                         <asp:TextBox ID="txtUsuario" CssClass="form-control" runat="server"></asp:TextBox>
                                         <asp:Button ID="btnPesquisarUser" CssClass="btn btn-default btn-sm" runat="server" Text="Pesquisar" />
                                         <br />
@@ -69,7 +69,7 @@
 
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#reclamacoes"><i class="glyphicon glyphicon-comment"></i>Reclamações </div>
+                        <div class="panel-heading" data-toggle="collapse" href="#reclamacoes"><i class="glyphicon glyphicon-comment"></i> Reclamações </div>
                         <div class="panel-body collapse" id="reclamacoes">
                             <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                 <ContentTemplate>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#cadastrar-cat"><i class="glyphicon glyphicon-th-list"></i>Cadastrar Categorias: </div>
+                        <div class="panel-heading" data-toggle="collapse" href="#cadastrar-cat"><i class="glyphicon glyphicon-th-list"></i> Cadastrar Categorias: </div>
                         <div class="panel-body collapse" id="cadastrar-cat">
                             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                 <ContentTemplate>
@@ -137,7 +137,7 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#comentarios"><i class="glyphicon glyphicon-eye-open"></i>Comentários</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#comentarios"><i class="glyphicon glyphicon-eye-open"></i> Comentários</div>
                         <div class="panel-body collapse" id="comentarios">
                             <asp:UpdatePanel ID="UpdatePanel6" runat="server">
                                 <ContentTemplate>
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#status"><i class="glyphicon glyphicon-ok"></i>Status</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#status"><i class="glyphicon glyphicon-ok"></i> Status</div>
                         <div class="panel-body collapse" id="status">
                             <asp:UpdatePanel ID="UpdatePanel7" runat="server">
                                 <ContentTemplate>

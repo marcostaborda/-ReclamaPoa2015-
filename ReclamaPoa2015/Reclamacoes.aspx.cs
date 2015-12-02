@@ -1,4 +1,7 @@
-﻿using ReclamaPoa2015.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using ReclamaPoa2015.Models;
+using ReclamaPoa2015.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +23,21 @@ namespace ReclamaPoa2015
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
+
         public IQueryable<ReclamacaoViewModel> reclamacaoList_GetData()
         {
-            return null;
+            ReclamacaoDal r = new ReclamacaoDal();
+            IQueryable<ReclamacaoViewModel> rec = r.getReclamacoes();
+            if (User.Identity.IsAuthenticated)
+            {
+                String idUser = Request.QueryString["idUser"];
+
+                int id;
+                Int32.TryParse(idUser, out id);
+                if (id == 1)
+                    rec = r.getReclamacaoUserId(User.Identity.GetUserId());
+            }
+            return rec;
         }
     }
 }

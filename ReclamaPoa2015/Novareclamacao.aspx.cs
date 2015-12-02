@@ -1,4 +1,7 @@
-﻿using ReclamaPoa2015.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using ReclamaPoa2015.Models;
+using ReclamaPoa2015.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +13,8 @@ namespace ReclamaPoa2015
 {
     public partial class Novareclamacao : System.Web.UI.Page
     {
-        //BairroDal b = new BairroDal();
-        //CategoriaDal c = new CategoriaDal();
+        BairroDal b = new BairroDal();
+        CategoriaDal c = new CategoriaDal();
 
         public enum MessageType { Sucesso, Erro, Info, Perigo };
 
@@ -54,77 +57,78 @@ namespace ReclamaPoa2015
 
         private void PopulaBairros()
         {
-            //ddlBairro.DataSource = b.getBairros();
-            //ddlBairro.DataTextField = "Nome";
-            //ddlBairro.DataValueField = "BairroId";
-            //ddlBairro.DataBind();
-            //ddlBairro.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlBairro.SelectedIndex = 0;
+            ddlBairro.DataSource = b.getBairros();
+            ddlBairro.DataTextField = "Nome";
+            ddlBairro.DataValueField = "BairroId";
+            ddlBairro.DataBind();
+            ddlBairro.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlBairro.SelectedIndex = 0;
         }
 
         private void PopulaCategorias()
         {
-            //ddlCategoria.DataSource = c.getCategoria();
-            //ddlCategoria.DataTextField = "Cat_Titulo";
-            //ddlCategoria.DataValueField = "CategoriaId";
-            //ddlCategoria.DataBind();
-            //ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
-            //ddlCategoria.SelectedIndex = 0;
+            ddlCategoria.DataSource = c.getCategoria();
+            ddlCategoria.DataTextField = "Cat_Titulo";
+            ddlCategoria.DataValueField = "CategoriaId";
+            ddlCategoria.DataBind();
+            ddlCategoria.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlCategoria.SelectedIndex = 0;
         }
 
         protected void cmdInserir_Click(object sender, EventArgs e)
         {
-            //if (Page.IsValid)
-            //{
-            //    String savePath = MapPath("~/Images/Reclamacao/");
-            //    int codCategoria = int.Parse(ddlCategoria.SelectedValue);
-            //    int codBairro = int.Parse(ddlBairro.SelectedValue);
-            //    if (codCategoria != 0)
-            //    {
-            //        if (codBairro != 0)
-            //        {
-            //            if (FileUpload1.HasFile)
-            //            {
-            //                savePath = SaveFile(FileUpload1.PostedFile, savePath);
-            //                ReclamacaoDal rec = new ReclamacaoDal()
-            //                {
-            //                    BairroId = codBairro,
-            //                    UserId = 3,
-            //                    CategoriaId = codCategoria,
-            //                    Titulo = txtTitulo.Text,
-            //                    Descricao = txtDescricao.Text,
-            //                    Endereco = txtEndereco.Text,
-            //                    StatusId = Status.Aberta,
-            //                    Foto = savePath
-            //                };
-            //                int retorno = rec.insereReclamacao(rec);
+            if (Page.IsValid)
+            {
+                String savePath = MapPath("~/Images/Reclamacao/");
+                int codCategoria = int.Parse(ddlCategoria.SelectedValue);
+                int codBairro = int.Parse(ddlBairro.SelectedValue);
+                if (codCategoria != 0)
+                {
+                    if (codBairro != 0)
+                    {
+                        if (FileUpload1.HasFile)
+                        {
+                            savePath = SaveFile(FileUpload1.PostedFile, savePath);
 
-            //                if (retorno == 0)
-            //                {
-            //                    ShowMessage("Ocorreu um erro ao inserir!", MessageType.Erro);
-            //                }
-            //                else
-            //                {
-            //                    //Response.Redirect("Reclamacoes.aspx");
-            //                    LimparCampos();
-            //                    ShowMessage("Cadastrado com sucesso", MessageType.Sucesso);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                ShowMessage("Selecione uma Foto!", MessageType.Erro);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            ShowMessage("Selecione um bairro!", MessageType.Erro);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ShowMessage("Selecione uma Categoria!", MessageType.Erro);
-            //    }
-            //}
+                            ReclamacaoDal rec = new ReclamacaoDal()
+                            {
+                                BairroId = codBairro,
+                                UserId = User.Identity.GetUserId(),
+                                CategoriaId = codCategoria,
+                                Titulo = txtTitulo.Text,
+                                Descricao = txtDescricao.Text,
+                                Endereco = txtEndereco.Text,
+                                StatusId = Status.Aberta,
+                                Foto = savePath
+                            };
+                            int retorno = rec.insereReclamacao(rec);
+
+                            if (retorno == 0)
+                            {
+                                ShowMessage("Ocorreu um erro ao inserir!", MessageType.Erro);
+                            }
+                            else
+                            {
+                                //Response.Redirect("Reclamacoes.aspx");
+                                LimparCampos();
+                                ShowMessage("Cadastrado com sucesso", MessageType.Sucesso);
+                            }
+                        }
+                        else
+                        {
+                            ShowMessage("Selecione uma Foto!", MessageType.Erro);
+                        }
+                    }
+                    else
+                    {
+                        ShowMessage("Selecione um bairro!", MessageType.Erro);
+                    }
+                }
+                else
+                {
+                    ShowMessage("Selecione uma Categoria!", MessageType.Erro);
+                }
+            }
         }
 
         private string SaveFile(HttpPostedFile postedFile, String path)
