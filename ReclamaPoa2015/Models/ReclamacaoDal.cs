@@ -113,7 +113,7 @@ namespace ReclamaPoa2015.Models
                                                            Titulo = l.Titulo,
                                                            UserId = l.UserId,
                                                            Data = l.Data,
-                                                           Link = true,
+                                                           Link = false,
                                                        };
             if (codCategoria != 0)
             {
@@ -127,8 +127,9 @@ namespace ReclamaPoa2015.Models
             {
                 consulta = consulta.Where(c => c.Status == statusId);
             }
-            if (data1 != null)
-            {                
+            DateTime dataTeste = new DateTime(0001, 01, 01);
+            if (dataTeste.Date != data1.Date)
+            {
                 if (data2 != null && data2 != data1)
                 {
                     consulta = consulta.Where(c => c.Data >= data1 && c.Data <= data2);
@@ -141,6 +142,52 @@ namespace ReclamaPoa2015.Models
             }
             return consulta.ToList();
         }
+
+        public int consultaTotalReclamacoes(int codCategoria, int codBairro, DateTime data1, DateTime data2)
+        {
+            PoaEntities db = new PoaEntities();
+            IQueryable<ReclamacaoViewModel> consulta = from l in db.Reclamacoes
+                                                       select new ReclamacaoViewModel
+                                                       {
+                                                           ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
+                                                           Categoria = l.Categoria.Cat_Titulo,
+                                                           BairrosId = l.BairroId,
+                                                           Bairro = l.Bairro.Nome,
+                                                           Endereco = l.Endereco,
+                                                           Descricao = l.Descricao,
+                                                           Foto = l.Foto,
+                                                           Status = l.StatusId,
+                                                           Titulo = l.Titulo,
+                                                           UserId = l.UserId,
+                                                           Data = l.Data,
+                                                           Link = true,
+                                                       };
+            if (codCategoria != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codCategoria);
+            }
+            if (codBairro != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codBairro);
+            }
+
+            DateTime dataTeste = new DateTime(0001,01,01);
+            if (dataTeste.Date != data1.Date)                
+            {
+                if (data2 != null && data2 != data1)
+                {
+                    consulta = consulta.Where(c => c.Data >= data1 && c.Data <= data2);
+                }
+                else
+                {
+                    data2 = data1.AddDays(1);
+                    consulta = consulta.Where(c => c.Data >= data1 && c.Data < data2);
+                }
+            }
+            return consulta.Count();
+        }
+
 
         public IQueryable<ReclamacaoViewModel> getReclamacaoUserId(String _idUserId)
         {

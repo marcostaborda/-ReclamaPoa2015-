@@ -45,7 +45,7 @@
                                     <p>
                                         <p>Insira o e-mail do usuário: </p>
                                         <asp:TextBox ID="txtUsuario" CssClass="form-control" runat="server"></asp:TextBox>
-                                        <asp:Button ID="btnPesquisarUser" CssClass="btn btn-default btn-sm" runat="server" Text="Pesquisar" />
+                                        <asp:Button ID="btnPesquisarUser" CssClass="btn btn-default btn-sm" runat="server" OnClick="btnPesquisarUser_Click" Text="Pesquisar" />
                                         <br />
                                     </p>
                                     <h2 class="reclam">Resultados: </h2>
@@ -57,10 +57,14 @@
                                         &nbsp
                               <asp:CheckBox ID="ckBox" runat="server" />
                                     </div>
-
-
+                                    <br/>
+                                    <br/>
                                     <div class="inputgroup">
-                                        <asp:Button CssClass="btn btn-primary" ID="btnSalvar" runat="server" Text="Salvar Alterações" />
+                                        <asp:Button CssClass="btn btn-primary" ID="btnSalvar" runat="server" OnClick="btnSalvarOficial_Click" Text="Salvar Alterações" />
+                                    </div>
+                                     <div class="alert alert-success" runat="server" id="SucessoOficial">
+                                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                      <strong>Successo!</strong> <asp:Literal ID="MensagemOficial" runat="server"></asp:Literal>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -91,13 +95,12 @@
                                                         <br />
                                                         <br />
                                                         <asp:Label ID="lblData2" runat="server" Text="Data final: "></asp:Label>
-
                                                         <asp:TextBox CssClass="form-control" ID="txtDate2" runat="server" Width="150px"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                        <asp:Button ID="btnGerar" CssClass="btn btn-default btn-sm pull-right" runat="server" Text="Gerar informações" />
+                                        <asp:Button ID="btnGerar" CssClass="btn btn-default btn-sm pull-right" runat="server" Text="Gerar informações" OnClick="btnGerar_Click" />
                                         <br />
                                     </p>
                                     <br />
@@ -130,6 +133,10 @@
                                     <asp:TextBox CssClass="form-control" ID="txtDescricao" runat="server"></asp:TextBox>
                                     <br />
                                     <br />
+                                    <div class="alert alert-success" runat="server" id="SucessoCategoria">
+                                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                      <strong>Successo!</strong> <asp:Literal ID="MensagemCategoria" runat="server"></asp:Literal>
+                                    </div>
                                     <asp:Button ID="btnInserirCategoria" CssClass="btn btn-default-sm" runat="server" Text="Inserir" OnClick="btnInserirCategoria_Click" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>

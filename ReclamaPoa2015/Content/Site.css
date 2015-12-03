@@ -5,6 +5,37 @@ body {
     background-color: #f4f4f4;
 }
 
+.autocomplete_list {
+    visibility: visible;
+    margin: 0px !important;
+    padding: 1px;
+    background-color: GrayText;
+    color: Black;
+    border: buttonshadow;
+    border-width: 1px;
+    border-style: solid;
+    cursor: default;
+    text-align: left;
+    list-style-type: none;
+    font-weight: normal;
+    font-family: Verdana;
+    font-size: 10px;
+}
+
+.autocomplete_highlighted_listitem {
+    background-color: GrayText;
+    color: Black;
+    padding: 3px;
+}
+
+.autocomplete_listitem {
+    background-color: Window;
+    color: Gray;
+    font-family: Verdana;
+    font-size: 10px;
+    padding: 3px;
+}
+
 .imagemGrid {
     max-width: 140px;
     max-height: 100px;

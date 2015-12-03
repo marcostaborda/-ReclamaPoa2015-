@@ -62,21 +62,14 @@ namespace ReclamaPoa2015
             int codCategoria = int.Parse(ddlCategoria.SelectedValue);
             int codBairro = int.Parse(ddlBairro.SelectedValue);;
             Status statusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
+
+            String data1 = txtDate1.Text;
+            String data2 = txtDate2.Text;
             DateTime dataValue1;
             DateTime dataValue2;
-            String data1 = txtDate1.Text;
-            if (DateTime.TryParse(data1, out dataValue1))
-            {
-                String data2 = txtDate2.Text;
-                if (DateTime.TryParse(data2, out dataValue2))
-                {
-                    PopulaList(codCategoria, codBairro, statusId, dataValue1, dataValue2);
-                }
-                else
-                {
-                    PopulaList(codCategoria, codBairro, statusId, dataValue1, dataValue1);
-                }
-            }
+            DateTime.TryParse(data1, out dataValue1);
+            DateTime.TryParse(data2, out dataValue2);
+            PopulaList(codCategoria, codBairro, statusId, dataValue1, dataValue2);
         }
 
         private void PopulaList(int codCategoria, int codBairro, Status statusId, DateTime data1, DateTime data2)
@@ -99,21 +92,6 @@ namespace ReclamaPoa2015
             txtDate2.Text = String.Empty;
             reclamacaoList.DataSource = null;
             reclamacaoList.DataBind();
-        }
-
-        public IQueryable<ReclamacaoViewModel> reclamacao_pesquisa()
-        {
-            ReclamacaoDal r = new ReclamacaoDal();
-            IQueryable<ReclamacaoViewModel> rec = r.getReclamacoes();
-            if (User.Identity.IsAuthenticated)
-            {
-                String idUser = Request.QueryString["idUser"];
-                int id;
-                Int32.TryParse(idUser, out id);
-                if (id == 1)
-                    rec = r.getReclamacaoUserId(User.Identity.GetUserId());
-            }
-            return rec;
-        }
+        }        
     }
 }
