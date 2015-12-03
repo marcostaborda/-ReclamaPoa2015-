@@ -21,6 +21,17 @@ namespace ReclamaPoa2015
             {
                 Response.Redirect("~/Account/Login.aspx");
             }
+            else
+            {
+                string userId = User.Identity.GetUserId();
+                ApplicationDbContext db = new ApplicationDbContext();
+                var role = (from r in db.Roles where r.Name.Contains("Oficial") select r).FirstOrDefault();
+                var users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
+                if (users.Find(x => x.Id == userId) != null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+            }
             if (!Page.IsPostBack)
             {
                 String idRec = Request.QueryString["idReclamacao"];
@@ -28,7 +39,7 @@ namespace ReclamaPoa2015
                 PopulaCategorias();
                 PopulaBairros();
                 PopulaStatus();
-                
+
                 MostraStatus(false);
                 if (idRec != null)
                 {
@@ -40,7 +51,7 @@ namespace ReclamaPoa2015
         private void PopulaTela(string _idRec)
         {
             int _id;
-            Int32.TryParse(_idRec, out _id);            
+            Int32.TryParse(_idRec, out _id);
             ReclamacaoViewModel c = r.getReclamacaoId(_id).FirstOrDefault();
             ddlCategoria.SelectedValue = c.CategoriaId.ToString();
             ddlBairro.SelectedValue = c.BairrosId.ToString();
@@ -56,13 +67,22 @@ namespace ReclamaPoa2015
             btnLimpar.Visible = false;
             foto.Visible = false;
             Button1.Text = "Salvar";
-            ddlStatus.Items.Remove(ddlStatus.Items.FindByText("Encerrada"));
+            if (c.Status == Status.Encerrada)
+            {
+                ddlStatus.Enabled = false;
+                Button1.Visible = false;
+            }
+            else
+            {
+                ddlStatus.Items.Remove(ddlStatus.Items.FindByText("Encerrada"));
+            }
             MostraStatus(true);
         }
 
         private void MostraStatus(bool talvez)
         {
-            Label6.Visible = talvez; ddlStatus.Visible = talvez;
+            Label6.Visible = talvez;
+            ddlStatus.Visible = talvez;
         }
 
         private void PopulaStatus()
@@ -112,7 +132,6 @@ namespace ReclamaPoa2015
         {
             int idReclamacao = Int32.Parse(v.ToString());
             ReclamacaoDal alterar = new ReclamacaoDal();
-
             alterar.ReclamacaoId = idReclamacao;
             alterar.StatusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
             int retorno = alterar.altaraReclamacao(alterar);

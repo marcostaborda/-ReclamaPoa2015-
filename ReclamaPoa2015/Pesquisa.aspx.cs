@@ -22,7 +22,7 @@ namespace ReclamaPoa2015
                 PopulaCategorias();
                 PopulaBairros();
                 PopulaStatus();
-                LimpaTela();             
+                LimpaTela();
             }
         }
 
@@ -60,7 +60,7 @@ namespace ReclamaPoa2015
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
             int codCategoria = int.Parse(ddlCategoria.SelectedValue);
-            int codBairro = int.Parse(ddlBairro.SelectedValue);;
+            int codBairro = int.Parse(ddlBairro.SelectedValue); ;
             Status statusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
 
             String data1 = txtDate1.Text;
@@ -73,7 +73,8 @@ namespace ReclamaPoa2015
         }
 
         private void PopulaList(int codCategoria, int codBairro, Status statusId, DateTime data1, DateTime data2)
-        {    
+        {
+            reclamacaoList.Visible = true;
             reclamacaoList.DataSource = r.populaPesquisa(codCategoria, codBairro, statusId, data1, data2);
             reclamacaoList.DataBind();
         }
@@ -92,6 +93,6 @@ namespace ReclamaPoa2015
             txtDate2.Text = String.Empty;
             reclamacaoList.DataSource = null;
             reclamacaoList.DataBind();
-        }        
+        }
     }
 }

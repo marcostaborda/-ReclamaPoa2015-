@@ -146,6 +146,22 @@
                                 </ContentTemplate>
                             </asp:RoleGroup>
                         </RoleGroups>
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="Oficial">
+                                <ContentTemplate>
+                                    <li><a runat="server" href="~/">Página Inicial</a></li>                                    
+                                    
+                                    <li>
+                                        <a runat="server" class="dropdown-toggle" id="A1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reclamações</a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="Reclamacoes">Reclamações</a></li>
+                                            <li><a href="Pesquisa">Pesquisa</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a runat="server" href="Sobre.aspx">Sobre</a></li>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
                     </asp:LoginView>
                 </ul>
             </div>

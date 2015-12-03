@@ -77,7 +77,7 @@ namespace ReclamaPoa2015
         private void RegistrarScrpitDatePicker()
         {
             String scriptText =
-               "if ($('.sandbox-container').length > 0) {$('.sandbox-container .input-daterange').datepicker({ format: 'dd/mm/yyyy',language: 'pt-BR',todayBtn: 'linked', autoclose: true});}";
+               "if ($('.sandbox-container').length > 0) {$('.sandbox-container .input-daterange').datepicker({ orientation: \"left\", format: 'dd/mm/yyyy',language: 'pt-BR',todayBtn: 'linked', autoclose: true});}";
 
             ScriptManager.RegisterStartupScript(this.Page, GetType(), "datepicker", scriptText, true);
         }

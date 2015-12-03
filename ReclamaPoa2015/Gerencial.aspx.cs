@@ -46,6 +46,8 @@ namespace ReclamaPoa2015
         {
             SucessoCategoria.Visible = false;
             SucessoOficial.Visible = false;
+            ErroStatusPercentual.Visible = false;
+            ErroCategoria.Visible = false;
         }
 
         private void PopulaStatus()
@@ -57,6 +59,7 @@ namespace ReclamaPoa2015
                 ddlStatus.Items.Add(new ListItem(Enum.GetName(typeof(Status), item), item.ToString()));
             }
             ddlStatus.Items.Insert(0, new ListItem("----Selecione-----", "0"));
+            ddlStatus.Items.Remove(ddlStatus.Items.FindByText("Aberta"));
         }
 
         private void PopulaBairros()
@@ -121,7 +124,12 @@ namespace ReclamaPoa2015
         protected void btnInserirCategoria_Click(object sender, EventArgs e)
         {
             MessagemFalse();
-            if (IsValid)
+            if (String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(txtDescricao.Text))
+            {
+                MensagemCategoriaErro.Text = "Por favor verifique se Nome e Descricao estão preenchidos";
+                ErroCategoria.Visible = true;
+            }
+            else
             {
                 CategoriaDal novaCat = new CategoriaDal();
                 novaCat.Cat_Titulo = txtNome.Text;
@@ -201,7 +209,7 @@ namespace ReclamaPoa2015
         {
             int codCategoria = int.Parse(ddlCategoria.SelectedValue);
             int codBairro = int.Parse(ddlBairro.SelectedValue);
-            
+
             String data1 = txtDate1.Text;
             String data2 = txtDate2.Text;
             DateTime dataValue1;
@@ -213,7 +221,7 @@ namespace ReclamaPoa2015
 
         private void ConsultaTotalReclama(int codCategoria, int codBairro, DateTime dataValue1, DateTime dataValue2)
         {
-            lblTotal.Text = r.consultaTotalReclamacoes(codCategoria,codBairro,dataValue1,dataValue2).ToString();
+            lblTotal.Text = r.consultaTotalReclamacoes(codCategoria, codBairro, dataValue1, dataValue2).ToString();
             LimpaConsultaReclama();
         }
 
@@ -223,6 +231,31 @@ namespace ReclamaPoa2015
             ddlBairro.SelectedValue = "0";
             txtDate1.Text = String.Empty;
             txtDate2.Text = String.Empty;
+        }
+
+        protected void btnGerarStatusPercentual_Click(object sender, EventArgs e)
+        {
+            MessagemFalse();
+            int codCategoria = int.Parse(ddlCategoria3.SelectedValue);
+            int codBairro = int.Parse(ddlBairro3.SelectedValue);
+            Status statusId = (Status)Enum.Parse(typeof(Status), ddlStatus.SelectedValue);
+            if (statusId == 0)
+            {
+                MessageStatusErro.Text = "Selecione pelo menos um Status";
+                ErroStatusPercentual.Visible = true;
+            }
+            else
+            {
+                if (codCategoria == 0 && codBairro == 0)
+                {
+                    MessageStatusErro.Text = "Selecione um bairro ou uma categoria";
+                    ErroStatusPercentual.Visible = true;
+                }
+                else
+                {
+                    lblPercentualStatus.Text = String.Format("{0}%", r.getPercentualStatus(codCategoria, codBairro, statusId).ToString());
+                }
+            }
         }
     }
 }

@@ -319,6 +319,24 @@ namespace ReclamaPoa2015 {
         protected global::System.Web.UI.WebControls.Literal MensagemCategoria;
         
         /// <summary>
+        /// ErroCategoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErroCategoria;
+        
+        /// <summary>
+        /// MensagemCategoriaErro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal MensagemCategoriaErro;
+        
+        /// <summary>
         /// btnInserirCategoria control.
         /// </summary>
         /// <remarks>
@@ -499,21 +517,39 @@ namespace ReclamaPoa2015 {
         protected global::System.Web.UI.WebControls.DropDownList ddlBairro3;
         
         /// <summary>
-        /// btnGerar3 control.
+        /// btnGerarStatusPercentual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGerar3;
+        protected global::System.Web.UI.WebControls.Button btnGerarStatusPercentual;
         
         /// <summary>
-        /// Label9 control.
+        /// ErroStatusPercentual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErroStatusPercentual;
+        
+        /// <summary>
+        /// MessageStatusErro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal MessageStatusErro;
+        
+        /// <summary>
+        /// lblPercentualStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPercentualStatus;
     }
 }

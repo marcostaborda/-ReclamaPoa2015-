@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gerencial.aspx.cs" Inherits="ReclamaPoa2015.Gerencial" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
+
     <!-- Main -->
     <div class="container">
         <div class="row">
@@ -17,9 +18,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <!--/panel-->
-
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#orgaos"><i class="glyphicon glyphicon-eye-open"></i> Orgãos oficiais</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#orgaos"><i class="glyphicon glyphicon-eye-open"></i>  Orgãos oficiais</div>
                         <div class="panel-gerencial collapse" id="orgaos">
                             <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                                 <ContentTemplate>
@@ -38,7 +38,7 @@
                     <!--/panel-->
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#usuarios"><i class="glyphicon glyphicon-user"></i> Usuários</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#usuarios"><i class="glyphicon glyphicon-user"></i>  Usuários</div>
                         <div class="panel-body collapse" id="usuarios">
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
@@ -57,14 +57,15 @@
                                         &nbsp
                               <asp:CheckBox ID="ckBox" runat="server" />
                                     </div>
-                                    <br/>
-                                    <br/>
+                                    <br />
+                                    <br />
                                     <div class="inputgroup">
                                         <asp:Button CssClass="btn btn-primary" ID="btnSalvar" runat="server" OnClick="btnSalvarOficial_Click" Text="Salvar Alterações" />
                                     </div>
-                                     <div class="alert alert-success" runat="server" id="SucessoOficial">
-                                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                      <strong>Successo!</strong> <asp:Literal ID="MensagemOficial" runat="server"></asp:Literal>
+                                    <div class="alert alert-success" runat="server" id="SucessoOficial">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Successo!</strong>
+                                        <asp:Literal ID="MensagemOficial" runat="server"></asp:Literal>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -73,7 +74,7 @@
 
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#reclamacoes"><i class="glyphicon glyphicon-comment"></i> Reclamações </div>
+                        <div class="panel-heading" data-toggle="collapse" href="#reclamacoes"><i class="glyphicon glyphicon-comment"></i>  Reclamações </div>
                         <div class="panel-body collapse" id="reclamacoes">
                             <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                 <ContentTemplate>
@@ -116,7 +117,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#cadastrar-cat"><i class="glyphicon glyphicon-th-list"></i> Cadastrar Categorias: </div>
+                        <div class="panel-heading" data-toggle="collapse" href="#cadastrar-cat"><i class="glyphicon glyphicon-th-list"></i>  Cadastrar Categorias: </div>
                         <div class="panel-body collapse" id="cadastrar-cat">
                             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                 <ContentTemplate>
@@ -134,8 +135,16 @@
                                     <br />
                                     <br />
                                     <div class="alert alert-success" runat="server" id="SucessoCategoria">
-                                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                      <strong>Successo!</strong> <asp:Literal ID="MensagemCategoria" runat="server"></asp:Literal>
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Successo!</strong>
+                                        <asp:Literal ID="MensagemCategoria" runat="server"></asp:Literal>
+                                    </div>
+                                     <br />
+                                    <br />
+                                    <div runat="server" class="alert alert-danger" id="ErroCategoria">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Erro!</strong> <asp:Literal runat="server" ID="MensagemCategoriaErro"></asp:Literal> 
+
                                     </div>
                                     <asp:Button ID="btnInserirCategoria" CssClass="btn btn-default-sm" runat="server" Text="Inserir" OnClick="btnInserirCategoria_Click" />
                                 </ContentTemplate>
@@ -144,7 +153,7 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#comentarios"><i class="glyphicon glyphicon-eye-open"></i> Comentários</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#comentarios"><i class="glyphicon glyphicon-eye-open"></i>  Comentários</div>
                         <div class="panel-body collapse" id="comentarios">
                             <asp:UpdatePanel ID="UpdatePanel6" runat="server">
                                 <ContentTemplate>
@@ -184,7 +193,7 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#status"><i class="glyphicon glyphicon-ok"></i> Status</div>
+                        <div class="panel-heading" data-toggle="collapse" href="#status"><i class="glyphicon glyphicon-ok"></i>  Status</div>
                         <div class="panel-body collapse" id="status">
                             <asp:UpdatePanel ID="UpdatePanel7" runat="server">
                                 <ContentTemplate>
@@ -200,14 +209,18 @@
                                     <asp:Label ID="Label6" runat="server" Text="Bairro:"></asp:Label>
                                     <asp:DropDownList CssClass="form-control" ID="ddlBairro3" runat="server"></asp:DropDownList>
                                     <br />
-
-                                    <asp:Button ID="btnGerar3" CssClass="btn btn-default btn-sm pull-right" runat="server" Text="Gerar informações" />
                                     <br />
-                                    </p>
-                            <br />
+                                    <asp:Button ID="btnGerarStatusPercentual" CssClass="btn btn-default btn-sm pull-right" runat="server" Text="Gerar informações" OnClick="btnGerarStatusPercentual_Click" />
+                                    <br />
+                                    <br />
+                                    <div runat="server" class="alert alert-danger" id="ErroStatusPercentual">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Erro!</strong> <asp:Literal runat="server" ID="MessageStatusErro"></asp:Literal> 
+
+                                    </div>
                                     <br />
                                     <h2 class="reclam">Percentual: </h2>
-                                    <asp:Label ID="Label9" CssClass="badge pull-right" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lblPercentualStatus" CssClass="badge pull-right" runat="server" Text=""></asp:Label>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>

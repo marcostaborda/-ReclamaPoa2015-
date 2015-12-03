@@ -22,6 +22,24 @@ namespace ReclamaPoa2015 {
         protected global::System.Web.UI.WebControls.Literal litTituloReclamacao;
         
         /// <summary>
+        /// btnResolver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnResolver;
+        
+        /// <summary>
+        /// btnResolvida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResolvida;
+        
+        /// <summary>
         /// litStatus control.
         /// </summary>
         /// <remarks>

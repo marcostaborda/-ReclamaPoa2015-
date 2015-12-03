@@ -191,6 +191,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Gerencial.aspx" />
+    <Content Include="Images\foto.png" />
     <Content Include="Images\iconeRP.png" />
     <Content Include="Images\Reclamacao\011.jpg" />
     <Content Include="Images\Reclamacao\2buraco.jpg" />

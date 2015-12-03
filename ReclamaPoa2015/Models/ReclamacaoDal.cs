@@ -161,7 +161,7 @@ namespace ReclamaPoa2015.Models
                                                            Titulo = l.Titulo,
                                                            UserId = l.UserId,
                                                            Data = l.Data,
-                                                           Link = true,
+                                                           Link = false,
                                                        };
             if (codCategoria != 0)
             {
@@ -212,6 +212,44 @@ namespace ReclamaPoa2015.Models
             return consulta;
         }
 
+        public double getPercentualStatus(int codCategoria, int codBairro, Status statusId)
+        {
+            PoaEntities db = new PoaEntities();
+            IQueryable<ReclamacaoViewModel> consulta = from l in db.Reclamacoes
+                                                       select new ReclamacaoViewModel
+                                                       {
+                                                           ReclamacaoId = l.ReclamacaoId,
+                                                           CategoriaId = l.CategoriaId,
+                                                           Categoria = l.Categoria.Cat_Titulo,
+                                                           BairrosId = l.BairroId,
+                                                           Bairro = l.Bairro.Nome,
+                                                           Endereco = l.Endereco,
+                                                           Descricao = l.Descricao,
+                                                           Foto = l.Foto,
+                                                           Status = l.StatusId,
+                                                           Titulo = l.Titulo,
+                                                           UserId = l.UserId,
+                                                           Data = l.Data,
+                                                           Link = false,
+                                                       };
+            if (codCategoria != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codCategoria);
+            }
+            if (codBairro != 0)
+            {
+                consulta = consulta.Where(c => c.CategoriaId == codBairro);
+            }
+            int numeroTotal = consulta.Count();
+
+            if (statusId != 0)
+            {
+                consulta = consulta.Where(c => c.Status == statusId);
+            }
+            
+            int statusTotal = consulta.Count();
+            return ((statusTotal / numeroTotal) * 100);
+        }
 
         public IQueryable<ReclamacaoViewModel> getReclamacoes()
         {

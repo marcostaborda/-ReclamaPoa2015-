@@ -32,6 +32,8 @@
                 </div>
                 <br>
                 <br>
+                <br>
+                <br>
                 <div class="input-daterange input-group" id="datepicker">
                     <div class="input-group">
                         <asp:Label ID="lblData1" runat="server" Text="Data inicial: " CssClass="input-group-addon"></asp:Label>
@@ -49,48 +51,47 @@
                 <asp:Button CssClass="btn btn-default" ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnEnviar_Click" />
                 <asp:Button CssClass="btn btn-default" ID="btnlimpar" runat="server" Text="Limpar" OnClick="btnlimpar_Click" />
             </div>
-      <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <asp:ListView ID="reclamacaoList" runat="server"
-            DataKeyNames="ReclamacaoId" GroupItemCount="1"
-            ItemType="ReclamaPoa2015.Models.ReclamacaoViewModel">
-            <EmptyDataTemplate>
-                <table>
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>Nehuma Reclamacao Encontrada.</td>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Foto</th>
+                        <th>Status</th>
+                        <th></th>
                     </tr>
-                </table>
-            </EmptyDataTemplate>
-            <EmptyItemTemplate>
-                <td/>
-            </EmptyItemTemplate>
-
-            <ItemTemplate>
+                </thead>
                 <tbody runat="server">
-                    <tr>
-                        <td><%#: Item.Titulo%></td>
-                        <td><%#: Item.Descricao%></td>
-                        <td style="max-width: 140px; max-height: 100px">
-                            <img src="Images/Reclamacao/<%#: Item.Foto %>" style="width: 100%" /></td>
-                        <td  runat="server" Visible="<%# Item.Link %>" >
-                           <a href="Novareclamacao.aspx?idReclamacao=<%#:Item.ReclamacaoId%>">Alterar</a>
-                        </td>
-                        <td>
-                            <a href="Detalhes.aspx?idReclamacao=<%#:Item.ReclamacaoId%>">Detalhes</a>
-                        </td>
-                    </tr>
+                    <asp:ListView ID="reclamacaoList" runat="server"
+                        DataKeyNames="ReclamacaoId" GroupItemCount="1"
+                        ItemType="ReclamaPoa2015.Models.ReclamacaoViewModel" Visible="false">
+                        <EmptyDataTemplate>
+                            <tr>
+                                <td>Nehuma Reclamacao Encontrada.</td>
+                            </tr>
+                        </EmptyDataTemplate>
+
+                        <EmptyItemTemplate>
+                        </EmptyItemTemplate>
+
+                        <ItemTemplate>
+                            <tr>
+                                <td><%#: Item.Titulo%></td>
+                                <td><%#: Item.Descricao%></td>
+                                <td style="max-width: 140px; max-height: 100px">
+                                    <img src="Images/Reclamacao/<%#: Item.Foto %>" style="width: 100%" /></td>
+                                <td>
+                                    <%#:Item.Status%>
+                                </td>
+                                <td>
+                                    <a href="Detalhes.aspx?idReclamacao=<%#:Item.ReclamacaoId%>">Detalhes</a>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:ListView>
+
                 </tbody>
-            </ItemTemplate>
-        </asp:ListView>
-    </table>
+            </table>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
